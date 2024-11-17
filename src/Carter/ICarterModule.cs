@@ -54,7 +54,9 @@ public abstract class CarterModule : ICarterModule
     /// Initializes a new instance of <see cref="CarterModule"/>
     /// </summary>
     /// <param name="basePath">A base path to group routes in your <see cref="CarterModule"/></param>
+#pragma warning disable CARTER1
     protected CarterModule(string basePath)
+#pragma warning restore CARTER1
     {
         this.basePath = basePath;
     }
@@ -234,11 +236,13 @@ public abstract class CarterModule : ICarterModule
 /// <summary>
 /// An interface to define HTTP routes
 /// </summary>
+/// <remarks>Implementations of <see cref="ICarterModule"/> should not inject constructor dependencies. All dependencies should be supplied in the route <see cref="RequestDelegate"/></remarks>
 public interface ICarterModule
 {
     /// <summary>
     /// Invoked at startup to add routes to the HTTP pipeline
     /// </summary>
+    /// <remarks>Implementations of <see cref="ICarterModule"/> should not inject constructor dependencies. All dependencies should be supplied in the route <see cref="RequestDelegate"/></remarks>
     /// <param name="app">An instance of <see cref="IEndpointRouteBuilder"/></param>
     void AddRoutes(IEndpointRouteBuilder app);
 }

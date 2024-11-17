@@ -112,16 +112,15 @@ public class AuthorizationTests : IDisposable
     }
 
     /// <summary>
-    /// See https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-7.0#mock-authentication
+    /// See https://learn.microsoft.com/en-us/aspnet/core/test/integration-tests?view=aspnetcore-8.0#mock-authentication
     /// </summary>
     private class TestAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         public TestAuthenticationHandler(
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,
-            UrlEncoder encoder,
-            ISystemClock clock)
-            : base(options, logger, encoder, clock)
+            UrlEncoder encoder)
+            : base(options, logger, encoder)
         {
         }
 
@@ -138,5 +137,3 @@ public class AuthorizationTests : IDisposable
         }
     }
 }
-
-
